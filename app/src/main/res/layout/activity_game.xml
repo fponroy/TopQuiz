@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.ponroy.florian.topquiz.GameActivity">
+    tools:context="com.ponroy.florian.topquiz.controller.GameActivity">
 
     <TextView
         android:id="@+id/activity_game_question_text"
