@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ponroy.florian.topquiz.R;
 import com.ponroy.florian.topquiz.model.Question;
@@ -12,7 +13,7 @@ import com.ponroy.florian.topquiz.model.QuestionBank;
 
 import java.util.Arrays;
 
-public class GameActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView mQuestionTextView;
     private Button mAnswerButton1;
@@ -43,8 +44,26 @@ public class GameActivity extends AppCompatActivity {
         mAnswerButton3.setTag(2);
         mAnswerButton4.setTag(3);
 
+        mAnswerButton1.setOnClickListener(this);
+        mAnswerButton2.setOnClickListener(this);
+        mAnswerButton3.setOnClickListener(this);
+        mAnswerButton4.setOnClickListener(this);
+
         mCurrentQuestion = mQuestionBank.getQuestion();
         this.displayQuestion(mCurrentQuestion);
+    }
+
+    @Override
+    public void onClick(View v) {
+        int responseIndex = (int) v.getTag();
+
+        if (responseIndex == mCurrentQuestion.getAnswerIndex()) {
+            // Good answer
+            Toast.makeText(this, "Correct", Toast.LENGTH_SHORT).show();
+        } else {
+            // Wrong answer
+            Toast.makeText(this, "Wrong answer!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void displayQuestion(final Question question) {
