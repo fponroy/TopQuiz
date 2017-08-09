@@ -11,12 +11,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.ponroy.florian.topquiz.R;
+import com.ponroy.florian.topquiz.model.User;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView mGreetingText;
     private EditText mNameInput;
     private Button mPlayButton;
+    private User mUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,9 @@ public class MainActivity extends AppCompatActivity {
         mPlayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String firstname = mNameInput.getText().toString();
+                mUser.setFirstname(firstname);
+
                 // User clicked the button
                 Intent gameActivityIntent = new Intent(MainActivity.this, GameActivity.class);
                 startActivity(gameActivityIntent);
