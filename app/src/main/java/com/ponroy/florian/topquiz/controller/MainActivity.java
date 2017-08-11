@@ -14,6 +14,8 @@ import android.widget.TextView;
 import com.ponroy.florian.topquiz.R;
 import com.ponroy.florian.topquiz.model.User;
 
+import static java.lang.System.out;
+
 public class MainActivity extends AppCompatActivity {
 
     private TextView mGreetingText;
@@ -30,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        System.out.println("MainActivity::onCreate()");
 
         mUser = new User();
 
@@ -101,5 +105,40 @@ public class MainActivity extends AppCompatActivity {
             mNameInput.setSelection(firstname.length());
             mPlayButton.setEnabled(true);
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        out.println("MainActivity::onStart()");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        out.println("MainActivity::onResume()");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        out.println("MainActivity::onPause()");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        out.println("MainActivity::onStop()");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        out.println("MainActivity::onDestroy()");
     }
 }
