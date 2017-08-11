@@ -122,6 +122,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                         finish();
                     }
                 })
+                .setCancelable(false)
                 .create()
                 .show();
     }
