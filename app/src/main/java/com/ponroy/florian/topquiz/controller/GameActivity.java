@@ -1,5 +1,7 @@
 package com.ponroy.florian.topquiz.controller;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -74,10 +76,27 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         if (--mNumberOfQuestions == 0) {
             // End the game
+            endGame();
         } else {
             mCurrentQuestion = mQuestionBank.getQuestion();
             displayQuestion(mCurrentQuestion);
         }
+    }
+
+    private void endGame() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Well done!")
+                .setMessage("Your score is " + mScore)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // End the activity
+                        finish();
+                    }
+                })
+                .create()
+                .show();
     }
 
     private void displayQuestion(final Question question) {
