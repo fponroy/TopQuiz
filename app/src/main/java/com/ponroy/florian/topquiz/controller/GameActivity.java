@@ -24,12 +24,16 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private QuestionBank mQuestionBank;
     private Question mCurrentQuestion;
 
+    private int mScore;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
         mQuestionBank = this.generateQuestions();
+
+        mScore = 0;
 
         // Wire widgets
         mQuestionTextView = (TextView) findViewById(R.id.activity_game_question_text);
@@ -60,6 +64,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         if (responseIndex == mCurrentQuestion.getAnswerIndex()) {
             // Good answer
             Toast.makeText(this, "Correct", Toast.LENGTH_SHORT).show();
+            mScore++;
         } else {
             // Wrong answer
             Toast.makeText(this, "Wrong answer!", Toast.LENGTH_SHORT).show();
