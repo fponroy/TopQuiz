@@ -25,6 +25,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private Question mCurrentQuestion;
 
     private int mScore;
+    private int mNumberOfQuestions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         mQuestionBank = this.generateQuestions();
 
         mScore = 0;
+        mNumberOfQuestions = 4;
 
         // Wire widgets
         mQuestionTextView = (TextView) findViewById(R.id.activity_game_question_text);
@@ -68,6 +70,13 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         } else {
             // Wrong answer
             Toast.makeText(this, "Wrong answer!", Toast.LENGTH_SHORT).show();
+        }
+
+        if (--mNumberOfQuestions == 0) {
+            // End the game
+        } else {
+            mCurrentQuestion = mQuestionBank.getQuestion();
+            displayQuestion(mCurrentQuestion);
         }
     }
 
